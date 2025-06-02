@@ -1,21 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Chatty chat chat</title>
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaius & Octavius - Römisches Gespräch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<main>
-		<div class="chat-history">
-
-		</div>
-		<form>
-			<input type="text" name="content">
-			<button type="submit">send</button>
-		</form>
-	</main>
-	<script src="index.js"></script>
+    <main>
+        <header>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Roman_amphora_Louvre_MNB1161.jpg/1280px-Roman_amphora_Louvre_MNB1161.jpg" alt="Römischer Krug" class="header-icon">
+            <div>
+                <h1>Gaius, der Töpfer</h1>
+                <p class="header-subtitle">Salve, mein Freund! Sprich mit mir.</p>
+            </div>
+        </header>
+        <div class="chat-history">
+            </div>
+        <form>
+            <input type="text" name="content" placeholder="Was gibt es Neues in Rom?">
+            <button type="submit">Senden</button>
+        </form>
+    </main>
+    <script src="index.js"></script>
 </body>
 </html>

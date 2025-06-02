@@ -1,40 +1,154 @@
+/* style.css */
+
+/* Globale Stile & Farben */
+:root {
+  --color-roman-dark-brown: #4B3621;
+  --color-roman-sand: #F5DEB3;
+  --color-roman-terracotta: #94644d; /* Gaius Farbe, angepasster Ton */
+  --color-roman-gold: #dcb059;     /* User Farbe, angepasster Ton */
+  --color-roman-bordeaux: #6A0518; /* Ein tieferer Bordeaux für Octavius' Hintergrund */
+  --color-roman-grey-blue: #465E6B; /* Alternativ für Octavius, ein staubiges Blau-Grau */
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
+
 html,
 body {
   height: 100%;
-  font-family: system-ui, sans-serif;
+  font-family: 'Lora', serif;
   font-weight: normal;
+  background-color: var(--color-roman-sand);
+  color: var(--color-roman-dark-brown);
+  overflow: hidden; /* Verhindert das Scrollen der gesamten Seite */
 }
+
 main {
   width: 700px;
-  height: 100%;
+  height: 100vh; /* Setzt die Höhe auf 100% der Viewport-Höhe */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 8px;
+  gap: 16px; /* Abstand zwischen Header, Chat-History und Form */
+  padding: 8px; /* Innenabstand des Main-Containers */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
 }
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 0;
+  background-color: var(--color-roman-terracotta);
+  color: white;
+  border-bottom: 3px solid var(--color-roman-gold);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  flex-shrink: 0; /* Verhindert, dass der Header schrumpft, wenn der Platz eng wird */
+}
+
+.header-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Rundes Bild */
+  object-fit: cover; /* Bildausschnitt anpassen */
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3); /* Dezenter Schatten */
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8em;
+  color: var(--color-roman-gold);
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.header-subtitle {
+  font-family: 'Lora', serif;
+  font-size: 1.1em;
+  color: rgba(255, 255, 255, 0.9);
+  font-style: italic;
+  margin-top: 5px;
+}
+
 .chat-history {
   width: 100%;
-  height: 100px;
-  background-color: rgb(244, 229, 188);
-  flex-grow: 1;
+  background-color: var(--color-roman-sand);
+  flex-grow: 1; /* Lässt diesen Bereich den verfügbaren Platz einnehmen */
   display: flex;
-  align-items: flex-end;
+  align-items: flex-end; /* Neue Nachrichten erscheinen unten */
   flex-direction: column;
-  gap: 16px;
-  overflow-y: auto;
+  gap: 12px;
+  overflow-y: auto; /* NUR dieser Bereich wird scrollbar */
   padding: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--color-roman-terracotta);
 }
-.chat-history > .message.assistant {
+
+.message {
+  max-width: 80%;
+  padding: 10px 15px;
+  border-radius: 20px;
+  line-height: 1.4;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Stil für Gaius' Nachrichten (Assistant) */
+.chat-history > .message.assistant,
+.chat-history > .message.gaius { /* Stelle sicher, dass beide Klassen erfasst werden */
   align-self: flex-start;
+  background-color: var(--color-roman-terracotta);
+  color: white;
+  border-bottom-left-radius: 5px;
 }
+
+/* Stil für deine Nachrichten */
 .chat-history > .message.user {
   align-self: flex-end;
+  background-color: var(--color-roman-gold);
+  color: var(--color-roman-dark-brown);
+  border-bottom-right-radius: 5px;
+}
+
+/* NEUER Stil für Octavius' Nachrichten */
+.chat-history > .message.octavius {
+  align-self: flex-start; /* Octavius erscheint auf der gleichen Seite wie Gaius */
+  background-color: var(--color-roman-bordeaux); /* Eine markante Farbe für den Senator */
+  color: white;
+  border-radius: 20px;
+  border-bottom-left-radius: 5px; /* Wie Gaius, für Konsistenz */
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Stil für Ladeanzeige (optional) */
+.message.loading {
+    background-color: rgba(0, 0, 0, 0.1); /* Hellgrauer Hintergrund */
+    color: var(--color-roman-dark-brown);
+    font-style: italic;
+    text-align: center;
+    align-self: center; /* Zentriert die Ladeanzeige */
+    padding: 8px 15px;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+/* Stil für Fehlermeldungen (optional) */
+.message.error {
+    background-color: #CC0000; /* Rot für Fehler */
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    align-self: center;
+    padding: 8px 15px;
+    border-radius: 10px;
 }
 
 form {
@@ -43,12 +157,46 @@ form {
   justify-content: center;
   align-items: center;
   gap: 8px;
+  padding: 8px 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-top: 1px solid var(--color-roman-terracotta);
+  flex-shrink: 0; /* Verhindert, dass die Form schrumpft */
 }
 
 input[type='text'] {
   flex-grow: 1;
-  height: 32px;
+  height: 40px;
+  padding: 0 15px;
+  border: 2px solid var(--color-roman-terracotta);
+  border-radius: 20px;
+  font-size: 1rem;
+  color: var(--color-roman-dark-brown);
+  outline: none; /* Entfernt den blauen Fokus-Rahmen */
 }
+input[type='text']::placeholder {
+  color: rgba(75, 54, 33, 0.6);
+}
+input[type='text']:focus {
+    border-color: var(--color-roman-gold); /* Goldener Rahmen beim Fokus */
+}
+
 button {
-  height: 100%;
+  height: 40px;
+  padding: 0 20px;
+  background-color: var(--color-roman-bordeaux);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+button:hover {
+  background-color: var(--color-roman-terracotta);
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+}
+button:active {
+    background-color: var(--color-roman-dark-brown);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
