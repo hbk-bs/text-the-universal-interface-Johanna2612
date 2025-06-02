@@ -110,6 +110,13 @@ header h1 {
   border-bottom-left-radius: 5px;
 }
 
+.chat-history > .message.octavius { /* Stelle sicher, dass beide Klassen erfasst werden */
+  align-self: flex-start;
+  background-color: var(--color-roman-terracotta);
+  color: red;
+  border-bottom-left-radius: 5px;
+}
+
 /* Stil für deine Nachrichten */
 .chat-history > .message.user {
   align-self: flex-end;
