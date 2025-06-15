@@ -4,7 +4,7 @@
 :root {
   --color-roman-dark-brown: #4B3621;
   --color-roman-sand: #F5DEB3;
-  --color-roman-terracotta: #94644d; /* Gaius Farbe, angepasster Ton */
+  --color-roman-terracotta: #8a5230; /* Gaius Farbe, angepasster Ton */
   --color-roman-gold: #dcb059;     /* User Farbe, angepasster Ton */
   --color-roman-bordeaux: #6A0518; /* Ein tieferer Bordeaux für Octavius' Hintergrund */
   --color-roman-grey-blue: #465E6B; /* Alternativ für Octavius, ein staubiges Blau-Grau */
@@ -27,8 +27,10 @@ body {
 }
 
 main {
-  width: 700px;
-  height: 100vh; /* Setzt die Höhe auf 100% der Viewport-Höhe */
+    width: 60vw;         /* 60% der Viewport-Breite */
+  max-width: 800px;    /* maximal 900px breit */
+  min-width: 320px;    /* mindestens 320px breit */
+  height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -62,7 +64,7 @@ header {
 }
 
 header h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'copperplate';
   font-size: 2.8em;
   color: var(--color-roman-gold);
   margin: 0;
@@ -72,10 +74,10 @@ header h1 {
 }
 
 .header-subtitle {
-  font-family: 'Lora', serif;
+  font-family: 'copperplate';
   font-size: 1.1em;
   color: rgba(255, 255, 255, 0.9);
-  font-style: italic;
+  font-style: normal;
   margin-top: 5px;
 }
 
@@ -94,11 +96,13 @@ header h1 {
 }
 
 .message {
-  max-width: 80%;
+  max-width: 65%;
+  min-width: 120px;
   padding: 10px 15px;
   border-radius: 20px;
   line-height: 1.4;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  word-break: break-word;
 }
 
 /* Stil für Gaius' Nachrichten (Assistant) */
@@ -188,6 +192,7 @@ input[type='text']:focus {
 }
 
 button {
+  font-family: copperplate;
   height: 40px;
   padding: 0 20px;
   background-color: var(--color-roman-bordeaux);
@@ -206,4 +211,102 @@ button:hover {
 button:active {
     background-color: var(--color-roman-dark-brown);
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    height: 100vh;
+    width: 100vw;
+    background: var(--color-roman-sand);
+}
+
+.ad-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 180px;
+    max-width: 220px;
+    
+    position: sticky;
+    top: 1rem;
+    height: fit-content;
+    z-index: 2;
+}
+
+.ad-banner img {
+    width: 100%;
+    max-width: 140px;
+    margin-bottom: 0.5rem;
+}
+
+.ad-banner.left-ad img {
+    max-width: 260px;   /* Bild im linken Banner größer */
+}
+
+.ad-banner.right-ad img {
+    width: 100%;
+    max-width: 300px;
+    max-height: 900px;    /* Bildbreite wie links */
+    height: auto;
+    object-fit: contain;
+}
+
+.left-ad {
+    order: 0;
+    min-width: 260px;   /* z.B. größer als Standard */
+    max-width: 320px; 
+}
+
+.left-ads {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Abstand zwischen den Plakaten */
+}
+
+.right-ad {
+    order: 2;
+    min-width: 260px;    /* gleiche Mindestbreite wie links */
+    max-width: 320px;    /* gleiche Maximalbreite wie links */
+    margin-left: 0.1rem;   /* gleicher Abstand zum Chat wie links */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    order: 1;
+    flex-grow: 1;
+    min-width: 0;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+@media (max-width: 900px) {
+    .ad-banner {
+        display: none;
+    }
+    main {
+        margin: 0;
+    }
+}
+
+.message-author {
+  font-size: 0.95em;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: var(--color-roman-bordeaux);
+  letter-spacing: 1px;
+}
+
+.message.gaius .message-author {
+  color: var(--color-roman-sand);
+}
+.message.octavius .message-author {
+  color: var(--color-roman-sand);
+}
+.message.user .message-author {
+  color: var(--color-roman-sand);
 }
